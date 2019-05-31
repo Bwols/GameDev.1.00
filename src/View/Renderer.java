@@ -30,18 +30,17 @@ public class Renderer {
 
 
     Camera camera;
-
-
+    
 
     final double height = Screen.getPrimary().getVisualBounds().getHeight();
     final double width = Screen.getPrimary().getVisualBounds().getWidth();
-//    final double height = 1000;
-//   final double width =1000;
 
     final String image_directory = "Resources/";
 
     TreeMap<String,Image> imageTreeMap = new TreeMap<String,Image>();
     Rendered_object rendered_object;
+
+    ArrayList<Rendered_sprite> rendered_spriteArrayList = new ArrayList<Rendered_sprite>();
 
 
 
@@ -67,6 +66,8 @@ public class Renderer {
 
         rendered_object = new Rendered_object(this,graphiccontext,graphicsContext_for_menu,camera,imageTreeMap);
 
+
+
         stage.setTitle("BunnyTheGame");
 
         stage.setScene(MenuScene);
@@ -80,18 +81,21 @@ public class Renderer {
 
     public void update(Game_Object Player, ArrayList<Game_Object> game_object_list){
         graphiccontext.clearRect(0,0,width,height);
+
         camera.update(Player.getX(),- Player.getY());
 
+
         for(Game_Object go : game_object_list){
-           // graphiccontext.drawImage(new Image("Resources/platform.jpg"),width/2 + go.getX(),height/2 - go.getY(),go.getWidth(),go.getHeight());
+
             rendered_object.render(go);
         }
         rendered_object.render(Player);
-        //graphiccontext.drawImage(new Image("asset_t.png"),width/2+ Player.getX(),height/2 - Player.getY(),Player.getWidth(),Player.getHeight());
 
     }
     public void update_for_menu(ArrayList<MenuItem> menuItemArrayList){
+
         graphicsContext_for_menu.drawImage(imageTreeMap.get("owl.jpg"),0,0,stage.getWidth(),stage.getHeight());
+
         for (MenuItem menuItem : menuItemArrayList){
          rendered_object.render(menuItem);
         }
