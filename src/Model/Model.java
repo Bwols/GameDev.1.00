@@ -30,6 +30,7 @@ public class Model {
         game_object_list.add(new Platform_Object(1,-200,200,20,400));
         game_object_list.add(new Platform_Object(1,0,-300,800,200));
         game_object_list.add(new Platform_Object(1,1000,-200,800,200));
+        game_object_list.add(new Platform_Object(1,1800,-200,800,200));
     }
     public void restart_level(){
         game_object_list.clear();

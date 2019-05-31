@@ -1,13 +1,18 @@
 package View;
 
 
+import javafx.scene.canvas.GraphicsContext;
 
 public  abstract class Rendered_sprite {
     double x = 0;
     double y = 0;
+    double width ;
+    double height;
     private String name;
-    public Rendered_sprite(String name){
+    public Rendered_sprite(String name,double width,double height){
         this.name = name;
+        this.width = width;
+        this.height = height;
     }
 
     public String getName() {
@@ -34,5 +39,13 @@ public  abstract class Rendered_sprite {
 
     public void setY(double y) {
         this.y = y;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public double getHeight() {
+        return height;
     }
 }

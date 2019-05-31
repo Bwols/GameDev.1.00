@@ -35,7 +35,7 @@ public class Rendered_object {
              image = imageTreeMap.get("error.png");
          }
          if(game_object.getName() == "platform"){
-             graphicsContext.drawImage(image,x ,y-20,game_object.getWidth(),game_object.getHeight()+20);
+             graphicsContext.drawImage(image,x ,y-30,game_object.getWidth(),game_object.getHeight()+30);
          }else
          graphicsContext.drawImage(image,x ,y,game_object.getWidth(),game_object.getHeight());
 
@@ -46,6 +46,13 @@ public class Rendered_object {
             //graphicsContext.drawImage(new Image("platform.jpg"),30,30);
         // graphicsContext.drawImage(new Image("Resources/platform.jpg"),30,30);
         //System.out.println(game_object.getName()+".jpg");
+    }
+    void render(Rendered_sprite rendered_sprite){
+        Image image = imageTreeMap.get(rendered_sprite.getName()+".png");
+        if(image == null){
+            image = imageTreeMap.get("error.png");
+        }
+        graphicsContext.drawImage(image,rendered_sprite.getX(),rendered_sprite.getY(),rendered_sprite.getWidth(),rendered_sprite.getHeight());
     }
 
    void  render(MenuItem menuitem){

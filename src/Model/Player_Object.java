@@ -12,6 +12,7 @@ public class Player_Object extends Game_Object {
 
     boolean on_ground = false;
     int state = 0;
+    int lives =3 ;
 
     public Player_Object(double x,double y){
         super(0,x,y,100,80);

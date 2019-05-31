@@ -15,7 +15,7 @@ public class Physics {
         else return movable.getX();
     }
     static double post_collision_velocityX(Game_Object movable , Game_Object wall) {
-        return 0;
+        return movable.getVelocityX();
     }
 
 

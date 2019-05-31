@@ -30,7 +30,7 @@ public class Renderer {
 
 
     Camera camera;
-    
+
 
     final double height = Screen.getPrimary().getVisualBounds().getHeight();
     final double width = Screen.getPrimary().getVisualBounds().getWidth();
@@ -64,8 +64,9 @@ public class Renderer {
         graphiccontext = canvas.getGraphicsContext2D();
         graphicsContext_for_menu = canvas_for_menu.getGraphicsContext2D();
 
-        rendered_object = new Rendered_object(this,graphiccontext,graphicsContext_for_menu,camera,imageTreeMap);
 
+        rendered_object = new Rendered_object(this,graphiccontext,graphicsContext_for_menu,camera,imageTreeMap);
+         load_sprites();
 
 
         stage.setTitle("BunnyTheGame");
@@ -83,7 +84,10 @@ public class Renderer {
         graphiccontext.clearRect(0,0,width,height);
 
         camera.update(Player.getX(),- Player.getY());
-
+        for(Rendered_sprite rs : rendered_spriteArrayList){
+            rs.update(camera);
+            rendered_object.render(rs);
+        }
 
         for(Game_Object go : game_object_list){
 
@@ -142,5 +146,9 @@ public class Renderer {
 
     public TreeMap<String, Image> getImageTreeMap() {
         return imageTreeMap;
+    }
+
+    public void load_sprites(){
+        rendered_spriteArrayList.add(new Rendered_sprite_background());
     }
 }
