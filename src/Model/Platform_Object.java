@@ -15,4 +15,9 @@ public class Platform_Object extends Game_Object {
     public String getName() {
         return "platform";
     }
+
+    @Override
+    public String getName_State() {
+        return getName();
+    }
 }

@@ -21,6 +21,7 @@ public abstract class Game_Object {
         this.width = width;
     }
     public abstract String getName();
+    public abstract String getName_State();
     public abstract boolean isCollidable();
     public  void update(){};
    // public abstract boolean isPhysicApplied();

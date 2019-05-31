@@ -35,7 +35,7 @@ public class Rendered_object {
              image = imageTreeMap.get("error.png");
          }
          if(game_object.getName() == "platform"){
-             graphicsContext.drawImage(image,x ,y-20,game_object.getWidth(),game_object.getHeight()+20);
+             graphicsContext.drawImage(image,x+20 ,y-20,game_object.getWidth(),game_object.getHeight()+20);
          }else
          graphicsContext.drawImage(image,x ,y,game_object.getWidth(),game_object.getHeight());
 

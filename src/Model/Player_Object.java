@@ -11,9 +11,10 @@ public class Player_Object extends Game_Object {
     double jumppower = 1400;
 
     boolean on_ground = false;
+    int state = 0;
 
     public Player_Object(double x,double y){
-        super(0,x,y,80,80);
+        super(0,x,y,100,80);
 
     }
 
@@ -31,9 +32,9 @@ public class Player_Object extends Game_Object {
         for(Game_Object go: game_object_list){
 
             if(this.getBody().intersects(go.getBody())){
-                System.out.println(this.getX() +" other:" + go.getX());
+                //System.out.println(this.getX() +" other:" + go.getX());
 
-                if(this.getX() -this.getWidth()/2.7 < (go.getX() + go.getWidth()/2  ) && this.getX() +this.getWidth()/2.7 > (go.getX() - go.getWidth()/2 ) ){
+                if(this.getX() - this.getWidth()/2.7 < (go.getX() + go.getWidth()/2  ) && this.getX() +this.getWidth()/2.7 > (go.getX() - go.getWidth()/2 ) ){
 
 
                     setY(Physics.post_collision_positionY(this,go));
@@ -98,6 +99,11 @@ public class Player_Object extends Game_Object {
     @Override
     public String getName() {
         return "player";
+    }
+
+    @Override
+    public String getName_State() {
+        return getName()+"_"+ state;
     }
 
     @Override

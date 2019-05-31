@@ -22,6 +22,9 @@ public class Keyboard_input_handler implements EventHandler<KeyEvent> {
             case  "UP":
                 model.moveup(b);
                 break;
+            case  "SPACE":
+                model.moveup(b);
+                break;
             case  "DOWN":
                 model.movedown(b);
                 break;
