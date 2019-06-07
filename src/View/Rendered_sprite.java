@@ -3,7 +3,7 @@ package View;
 
 import javafx.scene.canvas.GraphicsContext;
 
-public  abstract class Rendered_sprite {
+public   class Rendered_sprite {
     double x = 0;
     double y = 0;
     double width ;
@@ -23,7 +23,7 @@ public  abstract class Rendered_sprite {
         this.name = name;
     }
 
-    public abstract  void update(Camera camera);
+    public void update(Camera camera){};
 
     public double getX() {
         return x;

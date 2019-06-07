@@ -12,7 +12,8 @@ public class Player_Object extends Game_Object {
 
     boolean on_ground = false;
     int state = 0;
-    int lives =3 ;
+    int lives = 3;
+    int points = 0;
 
     public Player_Object(double x,double y){
         super(0,x,y,100,80);
@@ -122,5 +123,17 @@ public class Player_Object extends Game_Object {
 
     public void setOn_ground(boolean on_ground) {
         this.on_ground = on_ground;
+    }
+
+    public int getLives() {
+        return lives;
+    }
+
+    public void setLives(int lives) {
+        this.lives = lives;
+    }
+
+    public int getPoints() {
+        return points;
     }
 }

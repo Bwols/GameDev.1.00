@@ -2,6 +2,7 @@ package View;
 
 import Controller.MenuItem;
 import Model.Game_Object;
+import Model.Player_Object;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -30,6 +31,7 @@ public class Renderer {
 
 
     Camera camera;
+    GUI gui;
 
 
     final double height = Screen.getPrimary().getVisualBounds().getHeight();
@@ -53,6 +55,7 @@ public class Renderer {
         stage.setWidth(width);
         camera = new Camera(0,0);
 
+
         load_images(image_directory);
 
         Canvas canvas = new Canvas(width,height);//canvas the size of screen
@@ -66,6 +69,7 @@ public class Renderer {
 
 
         rendered_object = new Rendered_object(this,graphiccontext,graphicsContext_for_menu,camera,imageTreeMap);
+        gui = new GUI(rendered_object);
          load_sprites();
 
 
@@ -94,6 +98,11 @@ public class Renderer {
             rendered_object.render(go);
         }
         rendered_object.render(Player);
+
+        gui.update((Player_Object) Player);
+        gui.draw_lives();
+        gui.display_score();
+
 
     }
     public void update_for_menu(ArrayList<MenuItem> menuItemArrayList){

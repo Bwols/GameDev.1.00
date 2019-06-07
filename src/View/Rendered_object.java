@@ -61,7 +61,13 @@ public class Rendered_object {
             image =imageTreeMap.get("error.png");
         }
         graphicsContext_for_menu.drawImage(image,menuitem.getX(),menuitem.getY(),menuitem.getWidth(),menuitem.getHeight());
-
-
     }
+    void render(Rendered_sprite rendered_sprite,int x ,int y){
+        Image image = imageTreeMap.get(rendered_sprite.getName()+".png");
+        if(image == null){
+            image = imageTreeMap.get("error.png");
+        }
+        graphicsContext.drawImage(image,x,y,rendered_sprite.getWidth(),rendered_sprite.getHeight());
+    }
+
 }

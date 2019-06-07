@@ -31,6 +31,10 @@ public class Camera {
         return x;
     }
 
+    /**
+     * yea that
+     * @return
+     */
     public double getY() {
         return y;
     }
