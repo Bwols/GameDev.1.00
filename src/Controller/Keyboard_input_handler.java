@@ -37,11 +37,8 @@ public class Keyboard_input_handler implements EventHandler<KeyEvent> {
             case  "ESCAPE":
                 //model.ESC_action(b);
                 if(b){
-                    System.out.println("ESC");
-                    controller.game_loop.stop();
-                    controller.stage.setScene(controller.MenuScene);
-                    controller.menu.start();
-                    controller.menu.RE_SET_UP();
+
+                   controller.go_to_menu();
                 }
                 break;
             case  "SHIFT":

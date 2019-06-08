@@ -75,8 +75,15 @@ public class Controller {
 
     }
     protected void update(double delta_time){
-        model.update(delta_time);
-        renderer.update(model.getPlayer_Object(),model.getGame_object_list());                   //pass somehow those objects  tlo -  platforms - enemies /obstacles -player
+
+
+            model.update(delta_time);
+            renderer.update(model.getPlayer_Object(), model.getGame_object_list());
+        if(model.isGameOver()){
+            renderer.setGameOver();
+
+        }
+        //pass somehow those objects  tlo -  platforms - enemies /obstacles -player
     }
     protected void update_for_menu(){
         renderer.update_for_menu(menu.getMenu_item_list());
@@ -87,6 +94,13 @@ public class Controller {
     }
     public Scene getGameScene(){
         return GameScene;
+    }
+    public void go_to_menu(){
+      game_loop.stop();
+        stage.setScene(MenuScene);
+       menu.start();
+        menu.RE_SET_UP();
+
     }
 
 

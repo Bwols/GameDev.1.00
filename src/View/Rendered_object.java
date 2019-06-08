@@ -29,7 +29,7 @@ public class Rendered_object {
         double x = (renderer.width/2) + game_object.getX() - camera.getX() - (game_object.getWidth()/2);
         double y = (renderer.height/2) - game_object.getY() - camera.getY() - (game_object.getHeight()/2);
 
-        Image image = imageTreeMap.get(game_object.getName()+".png");
+        Image image = imageTreeMap.get(game_object.getName_State()+".png");
 
          if(image == null){
              image = imageTreeMap.get("error.png");

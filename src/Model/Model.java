@@ -6,7 +6,7 @@ public class Model {
 
     private Player_Object Player;
     private boolean MoveTable[];
-
+    boolean GameOver = false;
     private ArrayList<Game_Object> game_object_list;
 
     public Model(){
@@ -19,13 +19,19 @@ public class Model {
     }
 
     public void update(double delta_time){
-
-        Player.update(delta_time,MoveTable, game_object_list);
+        if(Player.getLives()==0){
+            GameOver = true;
+        }else{
+            Player.update(delta_time,MoveTable, game_object_list);
 //        for(Game_Object go :game_object_list){
 //            if(go instanceof Player_Object){
 //                ((Player_Object)go).update(delta_time,MoveTable, game_object_list);
 //            }
 //        }
+
+
+        }
+
 
 
     }
@@ -34,9 +40,12 @@ public class Model {
         game_object_list.add(new Platform_Object(1,-200,200,20,400));
         game_object_list.add(new Platform_Object(1,0,-300,800,200));
         game_object_list.add(new Platform_Object(1,1000,-200,800,200));
-        game_object_list.add(new Platform_Object(1,1800,-200,800,200));
+        game_object_list.add(new Platform_Object(1,1700,-200,800,200));
+        game_object_list.add(new Platform_Object(1,2800,-150,800,200));
         game_object_list.add(new Collectable_Object(600,30));
         game_object_list.add(new Hostile_Object(1000,-20,100,100));
+        game_object_list.add(new Collectable_Object(1000,100));
+        game_object_list.add(new Collectable_Object(1300,30));
     }
     public void restart_level(){
         game_object_list.clear();
@@ -83,4 +92,12 @@ public class Model {
         MoveTable[4] = b;
         System.out.println("shift"+b);
     };
+
+    public void setGameOver(boolean gameOver) {
+        GameOver = gameOver;
+    }
+
+    public boolean isGameOver() {
+        return GameOver;
+    }
 }

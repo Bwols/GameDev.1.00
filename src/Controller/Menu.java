@@ -42,7 +42,11 @@ public class Menu  extends AnimationTimer {
         Menu_item_list.clear();
         int i =0;
         Menu_item_list.add(new MenuItem_Start(controller,x,y+((i++)* vertical_space),width,height));
-        Menu_item_list.add(new Menuitem_continue(controller,x,y+((i++)* (vertical_space+ height)),width,height));
+
+        if(!controller.model.isGameOver()){
+            Menu_item_list.add(new Menuitem_continue(controller,x,y+((i++)* (vertical_space+ height)),width,height));
+        }
+
         Menu_item_list.add(new MenuItem_exit(controller,x,y+((i++)* (vertical_space+ height)),width,height));
     }
 

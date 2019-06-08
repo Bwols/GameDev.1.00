@@ -12,7 +12,7 @@ public class Player_Object extends Game_Object {
 
     boolean on_ground = false;
     int state = 0;
-    int lives = 3;
+    int lives = 1;
     int points = 0;
     int vulnerable = 0;
 
@@ -61,7 +61,8 @@ public class Player_Object extends Game_Object {
                 else if(go instanceof Collectable_Object){
 
                     this.setPoints(((Collectable_Object) go).get_points() +this.getPoints());
-                    game_object_list.removeIf(gno ->gno instanceof Collectable_Object);
+                    //game_object_list.removeIf(gno ->gno instanceof Collectable_Object);
+                    game_object_list.remove(go);
 
                 }
                 else if((go instanceof Hostile_Object && this.vulnerable <= 0)){

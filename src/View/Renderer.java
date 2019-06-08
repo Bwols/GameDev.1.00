@@ -160,4 +160,13 @@ public class Renderer {
     public void load_sprites(){
         rendered_spriteArrayList.add(new Rendered_sprite_background());
     }
+    public void setGameOver(){
+        Rendered_sprite gameover = new Rendered_sprite("gameover",800,500);
+        gameover.setX(600);
+        gameover.setY(200);
+        rendered_object.render(gameover);
+    }
+
+
+
 }

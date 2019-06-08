@@ -16,6 +16,7 @@ public class MenuItem_Start extends MenuItem {
             case 1: setState(2);
                 break;
             case 2: if(getState()==2){
+                controller.model.setGameOver(false);
                 controller.stage.setScene(controller.GameScene);
                 controller.game_loop.start();
                 controller.menu.stop();
