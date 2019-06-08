@@ -24,6 +24,7 @@ public abstract class Game_Object {
     public abstract String getName_State();
     public abstract boolean isCollidable();
     public  void update(){};
+    public void update(double deltatime){};
    // public abstract boolean isPhysicApplied();
 
     public Rectangle2D getBody() {

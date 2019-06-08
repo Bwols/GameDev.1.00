@@ -8,12 +8,13 @@ public class Player_Object extends Game_Object {
     final double max_velocityX = 700; // pixels per second
     int intMoveTable[]= new int[5];
 
-    double jumppower = 1400;
+    double jumppower = 1700;
 
     boolean on_ground = false;
     int state = 0;
     int lives = 3;
     int points = 0;
+    int vulnerable = 0;
 
     public Player_Object(double x,double y){
         super(0,x,y,100,80);
@@ -29,6 +30,7 @@ public class Player_Object extends Game_Object {
         moveX(delta_time,intMoveTable[2], intMoveTable[3]);
         moveY(delta_time,intMoveTable[0]);
         setOn_ground(false);
+        --vulnerable;
 
 
         for(Game_Object go: game_object_list){
@@ -36,25 +38,40 @@ public class Player_Object extends Game_Object {
             if(this.getBody().intersects(go.getBody())){
                 //System.out.println(this.getX() +" other:" + go.getX());
 
-                if(this.getX() - this.getWidth()/2.7 < (go.getX() + go.getWidth()/2  ) && this.getX() +this.getWidth()/2.7 > (go.getX() - go.getWidth()/2 ) ){
+                if(go instanceof Platform_Object) {
+                    if (this.getX() - this.getWidth() / 2.7 < (go.getX() + go.getWidth() / 2) && this.getX() + this.getWidth() / 2.7 > (go.getX() - go.getWidth() / 2)) {
 
 
-                    setY(Physics.post_collision_positionY(this,go));
-                    setVelocityY(Physics.post_collision_velocityY(this,go));
-                    if(this.getY() > go.getY()){
-                        setOn_ground(true);
+                        setY(Physics.post_collision_positionY(this, go));
+                        setVelocityY(Physics.post_collision_velocityY(this, go));
+                        if (this.getY() > go.getY()) {
+                            setOn_ground(true);
+                        }
+
                     }
 
+
+                    if (this.getY() < (go.getY() + go.getHeight() / 2 + this.getHeight() / 2) && this.getY() > (go.getY() - go.getHeight() / 2 - this.getHeight() / 2)) {
+
+                        setX(Physics.post_collision_positionX(this, go));
+                        setVelocityX(Physics.post_collision_velocityX(this, go));
+
+                    }
                 }
+                else if(go instanceof Collectable_Object){
 
-
-                if(this.getY() < (go.getY() + go.getHeight()/2 +this.getHeight()/2) && this.getY() > (go.getY() - go.getHeight()/2 - this.getHeight()/2)){
-
-                    setX(Physics.post_collision_positionX(this,go));
-                     setVelocityX(Physics.post_collision_velocityX(this,go));
+                    this.setPoints(((Collectable_Object) go).get_points() +this.getPoints());
+                    game_object_list.removeIf(gno ->gno instanceof Collectable_Object);
 
                 }
+                else if((go instanceof Hostile_Object && this.vulnerable <= 0)){
+                        setVulnerable(70);
+                        velocityX = Math.signum(-velocityX)* ((Hostile_Object) go).hit_velocity_x();
+                        velocityY = ((Hostile_Object) go).hit_velocity_y();
+                        lives -= ((Hostile_Object) go).get_damage();
+                    System.out.println(this.getVelocityX() +" aa "+ this.getVelocityY());
 
+                }
 
 
 
@@ -136,4 +153,17 @@ public class Player_Object extends Game_Object {
     public int getPoints() {
         return points;
     }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    public int getVulnerable() {
+        return vulnerable;
+    }
+
+    public void setVulnerable(int vulnerable) {
+        this.vulnerable = vulnerable;
+    }
+
 }

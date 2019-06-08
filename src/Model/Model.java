@@ -21,8 +21,12 @@ public class Model {
     public void update(double delta_time){
 
         Player.update(delta_time,MoveTable, game_object_list);
-//        obj1.setX(( obj1.getMax_velocityX()*delta_time/1000)*(intMoveTable[2]-intMoveTable[3])); // propably failed take adjustment to time
-//        //System.out.println(obj1.getX()+"   delta ti    " + delta_time);
+//        for(Game_Object go :game_object_list){
+//            if(go instanceof Player_Object){
+//                ((Player_Object)go).update(delta_time,MoveTable, game_object_list);
+//            }
+//        }
+
 
     }
     private void load_level(){
@@ -31,11 +35,15 @@ public class Model {
         game_object_list.add(new Platform_Object(1,0,-300,800,200));
         game_object_list.add(new Platform_Object(1,1000,-200,800,200));
         game_object_list.add(new Platform_Object(1,1800,-200,800,200));
+        game_object_list.add(new Collectable_Object(600,30));
+        game_object_list.add(new Hostile_Object(1000,-20,100,100));
     }
     public void restart_level(){
         game_object_list.clear();
         Player.setY(0);
         Player.setX(0);
+        Player.setPoints(0);
+        Player.setLives(3);
         load_level();
     }
 
