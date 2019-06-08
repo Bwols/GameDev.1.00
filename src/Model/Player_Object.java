@@ -26,6 +26,15 @@ public class Player_Object extends Game_Object {
         for(int i=0;i<5;++i){
            intMoveTable[i] = MoveTable[i] ? 1 : 0;//to get information on movement
         }
+        if(intMoveTable[2]==1){
+            state = 0;
+        }
+        if(intMoveTable[3]==1){
+            state = 1;
+        }
+        if(getY()<-1200){
+            lives = 0;
+        }
 
         moveX(delta_time,intMoveTable[2], intMoveTable[3]);
         moveY(delta_time,intMoveTable[0]);
