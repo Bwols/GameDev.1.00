@@ -33,4 +33,16 @@ public class Hostile_Object extends Game_Object {
     public boolean isCollidable() {
         return false;
     }
+
+    public void response_to_player(Player_Object player_object){
+
+        player_object.setVulnerable(70);
+        player_object.setVelocityX(Math.signum(-player_object.getVelocityX())* this.hit_velocity_x());;
+        player_object.setVelocityY(this.hit_velocity_y());
+        player_object.lives -= this.get_damage();
+    }
 }
+
+
+
+

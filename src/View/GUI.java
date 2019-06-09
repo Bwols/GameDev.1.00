@@ -15,7 +15,7 @@ public class GUI {
 
     public  GUI( Rendered_object rendered_object){
        this.rendered_object = rendered_object;
-        live = new Rendered_sprite("live",A,A);
+        live = new Rendered_sprite("life",A,A);
 
         rendered_object.graphicsContext.setFont(new Font(60));
         rendered_object.graphicsContext.setFill(Color.ORANGERED);

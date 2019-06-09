@@ -35,7 +35,7 @@ public class Keyboard_input_handler implements EventHandler<KeyEvent> {
                 model.moveleft(b);
                 break;
             case  "ESCAPE":
-                //model.ESC_action(b);
+
                 if(b){
 
                    controller.go_to_menu();

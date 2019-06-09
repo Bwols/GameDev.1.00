@@ -9,13 +9,13 @@ public class Player_Object extends Game_Object {
     int intMoveTable[]= new int[5];
 
     double jumppower = 1700;
-
+    double dash_velocity = 2200;
     boolean on_ground = false;
     int state = 0;
     int lives = 1;
     int points = 0;
     int vulnerable = 0;
-
+    int dash_points = 0;
     public Player_Object(double x,double y){
         super(0,x,y,100,80);
 
@@ -36,7 +36,7 @@ public class Player_Object extends Game_Object {
             lives = 0;
         }
 
-        moveX(delta_time,intMoveTable[2], intMoveTable[3]);
+        moveX(delta_time,intMoveTable[2], intMoveTable[3],MoveTable[4]);
         moveY(delta_time,intMoveTable[0]);
         setOn_ground(false);
         --vulnerable;
@@ -75,11 +75,10 @@ public class Player_Object extends Game_Object {
 
                 }
                 else if((go instanceof Hostile_Object && this.vulnerable <= 0)){
-                        setVulnerable(70);
-                        velocityX = Math.signum(-velocityX)* ((Hostile_Object) go).hit_velocity_x();
-                        velocityY = ((Hostile_Object) go).hit_velocity_y();
-                        lives -= ((Hostile_Object) go).get_damage();
-                    System.out.println(this.getVelocityX() +" aa "+ this.getVelocityY());
+                    ((Hostile_Object) go).response_to_player(this);
+                    if(this.vulnerable <= 0){
+                        game_object_list.remove(go);
+                    }
 
                 }
 
@@ -94,26 +93,34 @@ public class Player_Object extends Game_Object {
 
     }
 
-    public void moveX(double delta_time,int is_going_right,int is_going_left){
+    public void moveX(double delta_time,int is_going_right,int is_going_left,boolean is_goingfast){
+            --dash_points;
+        if(is_goingfast && dash_points <= 0){
+            dash_points = 200;
+            velocityX = dash_velocity *Math.signum(velocityX);
+        }else if(  dash_points <200 && dash_points > 188){}
 
-        if(is_going_right -is_going_left == 0){
-            if( Math.abs(velocityX) < max_velocityX/200 ){
-                velocityX = 0;
-            }else{
-                velocityX -=  (Math.signum(velocityX) *( accelerationX*delta_time/1000));
-            }
+        else {
 
-        }else{
+            if (is_going_right - is_going_left == 0) {
+                if (Math.abs(velocityX) < max_velocityX / 200) {
+                    velocityX = 0;
+                } else {
+                    velocityX -= (Math.signum(velocityX) * (accelerationX * delta_time / 1000));
+                }
 
-            velocityX += ( ( accelerationX*delta_time/1000) *(is_going_right -is_going_left));
+            } else {
 
-            if(Math.abs(velocityX) > max_velocityX ) {
-                setVelocityX(max_velocityX * Math.signum(velocityX));//if is faster than possoble set speed to max_speed
+                velocityX += ((accelerationX * delta_time / 1000) * (is_going_right - is_going_left));
+
+                if (Math.abs(velocityX) > (max_velocityX)) {
+                    setVelocityX(max_velocityX * Math.signum(velocityX));//if is faster than possoble set speed to max_speed
+                }
+
             }
 
         }
-        setX(getX()+ (velocityX*delta_time/1000));
-
+        setX(getX() + (velocityX * delta_time / 1000));
     }
 
     public void moveY(double delta_time,int is_jumping){
