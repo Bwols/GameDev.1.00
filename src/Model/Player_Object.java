@@ -2,6 +2,9 @@ package Model;
 
 import java.util.ArrayList;
 
+/**
+ * Most important object in the game, responsible for handling all situations concerning player and surrounding world
+ */
 public class Player_Object extends Game_Object {
 
     double accelerationX = 1700;
@@ -12,7 +15,7 @@ public class Player_Object extends Game_Object {
     double dash_velocity = 2200;
     boolean on_ground = false;
     int state = 0;
-    int lives = 1;
+    int lives = 3;
     int points = 0;
     int vulnerable = 0;
     int dash_points = 0;
@@ -22,6 +25,13 @@ public class Player_Object extends Game_Object {
     }
 
 
+    /**
+     * Updates player.First moves it accordingly to user input and then checks for collisions.Eventually updating status variables
+     *
+     * @param delta_time
+     * @param MoveTable
+     * @param game_object_list
+     */
     public void update(double delta_time, boolean MoveTable[], ArrayList<Game_Object>game_object_list) {//cant be called by game object
         for(int i=0;i<5;++i){
            intMoveTable[i] = MoveTable[i] ? 1 : 0;//to get information on movement
@@ -93,6 +103,13 @@ public class Player_Object extends Game_Object {
 
     }
 
+    /**
+     * Implementation of movement in x axis
+     * @param delta_time
+     * @param is_going_right
+     * @param is_going_left
+     * @param is_goingfast
+     */
     public void moveX(double delta_time,int is_going_right,int is_going_left,boolean is_goingfast){
             --dash_points;
         if(is_goingfast && dash_points <= 0){
@@ -123,6 +140,11 @@ public class Player_Object extends Game_Object {
         setX(getX() + (velocityX * delta_time / 1000));
     }
 
+    /**
+     * Implementation of movement in y axis
+     * @param delta_time
+     * @param is_jumping
+     */
     public void moveY(double delta_time,int is_jumping){
         velocityY += (is_jumping *(on_ground ? 1:0) * jumppower/100) -(Physics.Gforce(delta_time/1000));
         setY(getY() + velocityY);

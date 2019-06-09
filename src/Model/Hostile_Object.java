@@ -1,5 +1,8 @@
 package Model;
 
+/**
+ * Basic body wounding player
+ */
 public class Hostile_Object extends Game_Object {
 
     static double bounce_v_x = 600;
@@ -34,6 +37,10 @@ public class Hostile_Object extends Game_Object {
         return false;
     }
 
+    /**
+     * Responsible for affecting player after collision, take life points,changes velocity
+     * @param player_object
+     */
     public void response_to_player(Player_Object player_object){
 
         player_object.setVulnerable(70);

@@ -6,9 +6,9 @@ public class Enemy_Object extends Hostile_Object {
     static double height = 200;
     private double velocityX = 300;
     private double patrol_range =200;
-    static double spawn_x = 120;
-    static double spawn_y = 120;
-
+    static double spawn_x ;
+    static double spawn_y ;
+    int ticks = 0;
 
     public Enemy_Object(double spawn_x, double spawn_y ){
         super(spawn_x,spawn_y,width,height);
@@ -20,9 +20,26 @@ public class Enemy_Object extends Hostile_Object {
     @Override
     public void update(double deltatime) {
         move(deltatime);
-        if(getX()>=spawn_x + patrol_range|| getX() <= spawn_x - patrol_range){
-            velocityX *= -1;
+        --ticks;
+        if(getX()>spawn_x + patrol_range|| getX() < spawn_x - patrol_range){
+            if(ticks <= 0){
+                velocityX *= -1;
+                ticks = 80;
+            }
+
+
         }
+//        if(getX()> spawn_x + patrol_range){
+//            //velocityX = Math.abs(velocityX);
+//            //velocityX *= -1;
+//            setVelocityY(Math.abs(velocityX) *-1);
+//        velocityX -= 1;
+//        }
+//        if (getX() < spawn_x - patrol_range){
+//          setVelocityX(velocityX *-1 );
+//
+//           // velocityX -= 1;
+//        }
 
     }
 

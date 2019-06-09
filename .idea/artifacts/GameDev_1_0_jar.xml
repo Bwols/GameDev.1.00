@@ -3,6 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/GameDev_1_0_jar</output-path>
     <root id="archive" name="GameDev.1.0.jar">
       <element id="module-output" name="GameDev.1.0" />
+      <element id="artifact" artifact-name="GameDev.1.0:jar2" />
     </root>
   </artifact>
 </component>

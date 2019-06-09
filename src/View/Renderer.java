@@ -8,8 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -18,6 +16,9 @@ import java.util.ArrayList;
 import java.util.TreeMap;
 
 
+/**
+ * Contains all code that is responsible for graphic layer of the game
+ */
 public class Renderer {
     Stage stage;
     Group root;
@@ -31,7 +32,7 @@ public class Renderer {
 
 
     Camera camera;
-    GUI gui;
+    HUD gui;
 
 
     final double height = Screen.getPrimary().getVisualBounds().getHeight();
@@ -45,7 +46,9 @@ public class Renderer {
     ArrayList<Rendered_sprite> rendered_spriteArrayList = new ArrayList<Rendered_sprite>();
 
 
-
+    /**
+     * Prepares and adjusts resources for rendering
+     */
     public void Set_UP(){
 
        // stage.setFullScreen(true);
@@ -69,11 +72,11 @@ public class Renderer {
 
 
         rendered_object = new Rendered_object(this,graphiccontext,graphicsContext_for_menu,camera,imageTreeMap);
-        gui = new GUI(rendered_object);
+        gui = new HUD(rendered_object);
          load_sprites();
 
 
-        stage.setTitle("BunnyTheGame");
+        stage.setTitle("SQIK-TheGame");
 
         stage.setScene(MenuScene);
 
@@ -84,6 +87,11 @@ public class Renderer {
         this.stage = stage;
     }
 
+    /**
+     * Updates the screen.
+     * @param Player
+     * @param game_object_list
+     */
     public void update(Game_Object Player, ArrayList<Game_Object> game_object_list){
         graphiccontext.clearRect(0,0,width,height);
 
@@ -105,6 +113,11 @@ public class Renderer {
 
 
     }
+
+    /**
+     * updates the screen while in menu context
+     * @param menuItemArrayList
+     */
     public void update_for_menu(ArrayList<MenuItem> menuItemArrayList){
 
         graphicsContext_for_menu.drawImage(imageTreeMap.get("owl.jpg"),0,0,stage.getWidth(),stage.getHeight());
@@ -116,18 +129,30 @@ public class Renderer {
     }
 
 
+    /**
+     * @param gameScene
+     */
     public void addGameScene(Scene gameScene){
         this.GameScene = gameScene;
     }
 
+    /**
+     * @param MenuScene
+     */
     public void addMenuScnene(Scene MenuScene){
         this.MenuScene = MenuScene;
     }
 
+    /**
+     * @param root
+     */
     public void addRoot(Group root){
         this.root = root;
     }
 
+    /**
+     * @param root_for_menu
+     */
     public void addRoot_for_menu(Group root_for_menu){
         this.root_for_menu = root_for_menu;
     }
@@ -141,6 +166,10 @@ public class Renderer {
         return width;
     }
 
+    /**
+     * Loads not recursively all images in said path
+     * @param image_directory
+     */
     public void load_images(String image_directory){
         File directory = new File("./src/"+image_directory);
 
@@ -160,6 +189,10 @@ public class Renderer {
     public void load_sprites(){
         rendered_spriteArrayList.add(new Rendered_sprite_background());
     }
+
+    /**
+     * Displays the game over scene
+     */
     public void setGameOver(){
         Rendered_sprite gameover = new Rendered_sprite("gameover",800,500);
         gameover.setX(600);

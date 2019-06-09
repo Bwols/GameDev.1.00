@@ -3,6 +3,9 @@ package Controller;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * Handles Mouse input for menu
+ */
 public class Mouse_input_handler implements EventHandler<MouseEvent> {
     Menu menu;
     int type_of_action;// 0 hover

@@ -3,7 +3,11 @@ package Model;
 public class Collectable_Object extends Game_Object {
 
 
-
+    /**
+     *  object ready to be collected adds points
+     * @param x
+     * @param y
+     */
   public Collectable_Object( double x, double y){
 
        super(3,x,y,70,70);

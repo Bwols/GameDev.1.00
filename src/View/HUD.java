@@ -4,7 +4,10 @@ import Model.Player_Object;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-public class GUI {
+/**
+ * Is responsible for displaying player stats and and rest of HUD
+ */
+public class HUD {
     int lives = 0 ;
     int points = 0;
     final int space = 30;
@@ -13,7 +16,7 @@ public class GUI {
     Rendered_sprite live;
     Rendered_object rendered_object;
 
-    public  GUI( Rendered_object rendered_object){
+    public HUD(Rendered_object rendered_object){
        this.rendered_object = rendered_object;
         live = new Rendered_sprite("life",A,A);
 

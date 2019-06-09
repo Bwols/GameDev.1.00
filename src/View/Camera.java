@@ -3,6 +3,9 @@ package View;
 import Model.Game_Object;
 import Model.Player_Object;
 
+/**
+ * "Follows" our player and is reference point for rendering screen
+ */
 public class Camera {
     double x = 0;
     double y = 0;
@@ -33,7 +36,7 @@ public class Camera {
 
     /**
      * yea that
-     * @return
+     * @return 10
      */
     public double getY() {
         return y;

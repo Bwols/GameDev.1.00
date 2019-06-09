@@ -27,6 +27,14 @@ public class Controller {
     Game_Loop game_loop;
     Menu menu;
 
+    /**
+     * Sets up resources for Application like Group ,Scene,Animation Time
+     * and ActionListeners for both menu and game itself.
+     *
+     * @param stage
+     * @param model
+     * @param renderer
+     */
     public Controller(Stage stage,Model model,Renderer renderer){
 
         this.stage = stage;
@@ -74,6 +82,10 @@ public class Controller {
         stage.show();
 
     }
+
+    /**
+     * @param delta_time
+     */
     protected void update(double delta_time){
 
 
@@ -85,7 +97,12 @@ public class Controller {
         }
         //pass somehow those objects  tlo -  platforms - enemies /obstacles -player
     }
+
+    /**
+     *updates view for menu
+     */
     protected void update_for_menu(){
+
         renderer.update_for_menu(menu.getMenu_item_list());
     }
 
@@ -95,6 +112,10 @@ public class Controller {
     public Scene getGameScene(){
         return GameScene;
     }
+
+    /**
+     * changes scene to menu and essential to the process variables
+     */
     public void go_to_menu(){
       game_loop.stop();
         stage.setScene(MenuScene);

@@ -4,6 +4,9 @@ import javafx.animation.AnimationTimer;
 
 import java.util.ArrayList;
 
+/**
+ * Handles logic for menu
+ */
 public class Menu  extends AnimationTimer {
 
     Controller controller;
@@ -26,6 +29,11 @@ public class Menu  extends AnimationTimer {
 
     }
 
+    /**
+     * @param type_of_action
+     * @param mouse_pose_x
+     * @param mouse_pose_y
+     */
     void call_menu_on_mouse_event(int type_of_action,double mouse_pose_x,double mouse_pose_y){
 
         for (MenuItem menuItem : Menu_item_list){
@@ -38,6 +46,10 @@ public class Menu  extends AnimationTimer {
         }
 
     }
+
+    /**
+     * Sets up buttons for menu,
+     */
     public void RE_SET_UP(){
         Menu_item_list.clear();
         int i =0;
@@ -51,6 +63,9 @@ public class Menu  extends AnimationTimer {
     }
 
 
+    /**
+     * @param now
+     */
     @Override
     public void handle(long now) {
         controller.update_for_menu();

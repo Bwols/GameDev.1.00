@@ -7,6 +7,9 @@ import javafx.scene.image.Image;
 
 import java.util.TreeMap;
 
+/**
+ * Is responsible for displaying all application objects
+ */
 public class Rendered_object {
 
     GraphicsContext graphicsContext;
@@ -39,13 +42,7 @@ public class Rendered_object {
          }else
          graphicsContext.drawImage(image,x ,y,game_object.getWidth(),game_object.getHeight());
 
-        //--change .jpg -> .png
-        // graphicsContext.drawImage(imageTreeMap.get("platform.jpg"),x ,y,game_object.getWidth(),game_object.getHeight()); //--change .jpg -> .png
 
-         //graphicsContext.drawImage(imageTreeMap.get("platform.jpg"), game_object.getX(),-game_object.getY(),game_object.getWidth(),game_object.getHeight());
-            //graphicsContext.drawImage(new Image("platform.jpg"),30,30);
-        // graphicsContext.drawImage(new Image("Resources/platform.jpg"),30,30);
-        //System.out.println(game_object.getName()+".jpg");
     }
     void render(Rendered_sprite rendered_sprite){
         Image image = imageTreeMap.get(rendered_sprite.getName()+".png");

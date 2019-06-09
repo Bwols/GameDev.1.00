@@ -3,6 +3,9 @@ package Controller;
 
 import javafx.animation.AnimationTimer;
 
+/**
+ * Implements game_loop calling update on model and renderer
+ */
 public class Game_Loop extends AnimationTimer {
     private Controller controller;
 

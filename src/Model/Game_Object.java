@@ -2,6 +2,10 @@ package Model;
 
 import javafx.geometry.Rectangle2D;
 
+/**
+ * Super class for all bodies/entities in game
+ * is described by position, dimensions, and velocity vector
+ */
 public abstract class Game_Object {
 
     private int ID;
@@ -13,6 +17,13 @@ public abstract class Game_Object {
     private double width;
 
 
+    /**
+     * @param id
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     */
     public Game_Object(int id, double x, double y , double width, double height){
         this.ID = id;
         this.x = x;
@@ -20,6 +31,10 @@ public abstract class Game_Object {
         this.height = height;
         this.width = width;
     }
+
+    /**
+     * @return name
+     */
     public abstract String getName();
     public abstract String getName_State();
     public abstract boolean isCollidable();
@@ -31,6 +46,11 @@ public abstract class Game_Object {
         return new Rectangle2D(x-width/2,y-height/2,width,height);
     }
 
+    /**
+     * Crucial for collision detection and handling
+     * @param other
+     * @return true if there is collision between this and other
+     */
     public boolean intersects(Game_Object other){
         return (other.getBody().intersects(this.getBody())&& other.isCollidable());
     }

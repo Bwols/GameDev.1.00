@@ -2,6 +2,9 @@ package Controller;
 
 import javafx.geometry.Rectangle2D;
 
+/**
+ * Super class for menu items
+ */
 public abstract class MenuItem  {
 
     private String name;
